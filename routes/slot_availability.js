@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-const { PartySchedule } = require('../database');
+const { PartySchedule, Order } = require('../database');
 
 /**
  {
@@ -30,12 +30,19 @@ router.get('/', async function(req, res, next) {
     },
   });
 
+  const orders = await Order.findAll({
+    where: {
+      order_date: partyDate,
+    },
+  });
+  
   // All reserved slots
   slot_ids = schedules.map(s => Number.parseInt(s['time_slot_id']));
+  order_ids = orders.map(o => Number.parseInt(o['order_time_slot']));
 
   const result = Array(8).fill(true);
   //不太明白
-  for (const slot_id of slot_ids) {
+  for (const slot_id of new Set([...slot_ids, ...order_ids])) {
       result[slot_id - 1] = false;
   }
 

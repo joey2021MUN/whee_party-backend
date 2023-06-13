@@ -9,6 +9,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var packageInfoRouter = require('./routes/package_info');
 var slotAvailabilityRouter = require('./routes/slot_availability');
+var orderRouter = require('./routes/order');
 
 var app = express();
 
@@ -24,6 +25,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // whee party api
 app.use('/', indexRouter);
+app.use('/order', orderRouter);
 app.use('/users', usersRouter);
 app.use('/package_info', packageInfoRouter)
 app.use('/check-slot-availability', slotAvailabilityRouter);
