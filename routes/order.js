@@ -1,33 +1,48 @@
 var express = require('express');
 var router = express.Router();
 
-const { Order } = require('../database');
+const Order = require('../model/order');
 
-const TimeslotMap = [
-    "10-12",
-    "11-13",
-    "12.5-14.5",
-    "13.5-15.5",
-    "15-17",
-    "16-18",
-    "17.5-19.5",
-    "18.5-20.5",
-  ];
-  
-/* POST order to database. */
+/**
+ * @swagger
+ * /order:
+ *   post:
+ *     summary: Create a new order
+ *     parameters:
+ *       - in: body
+ *         name: body
+ *         required: true
+ *         schema:
+ *           type: object
+ *           properties:
+ *             date:
+ *               type: string
+ *               description: The date of the party
+ *               example: "2023-05-01"
+ *             time_slot:
+ *               type: string
+ *               description: The time slot of the party
+ *               example: "10 am - 12 pm"
+ *     security:
+ *       - BearerAuth: []
+ *     responses:
+ *       '200':
+ *         description: A successful response
+ *       '401':
+ *         description: Unauthorized
+ */
 router.post('/', async function(req, res, next) {
     const date = new Date(req.body.date);
-    const timeslot = req.body.time_slot;
-    const timeSlotId = TimeslotMap.indexOf(timeslot) + 1;
+    const timeSlotId = req.body.time_slot_id;
 
     try {
         await Order.create({
             order_date: date,
-            order_time_slot: timeSlotId,
+            time_slot_id: timeSlotId,
         });
-        res.json({success: true, message: "Order success!"});
+        res.json({success: true, message: "Booking success!"});
     } catch (error) {
-        res.json({success: false, message: "Duplicated order!"});
+        res.json({success: false, message: "Not Available!"});
     }
 });
 
