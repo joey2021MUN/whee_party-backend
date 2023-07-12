@@ -7,16 +7,19 @@ const PackageInfo = require("../model/package_info");
  * @swagger
  * /package_info:
  *   get:
- *     summary: return infomation of three packages in database 
+ *     summary: Return infomation of three packages from database 
  *     responses:
  *       '200':
  *         description: A successful response
  */
-async function packageInfoRouterHandler(req, res, next) {
+// async function packageInfoRouterHandler(req, res, next) {
+//   const packages = await PackageInfo.findAll();  
+//   res.json(packages);
+// }
+
+router.get("/", async function (req, res, next) {
   const packages = await PackageInfo.findAll();  
   res.json(packages);
-}
-
-router.get("/", packageInfoRouterHandler);
+});
 
 module.exports = router;

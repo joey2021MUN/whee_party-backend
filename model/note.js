@@ -1,6 +1,8 @@
 const { DataTypes } = require("sequelize");
 const { sequelize, config } = require("../database");
 
+// After booking a praty successfully, the user can provide a note regarding the themes, 
+// pizzas, drinks, tablecloth color, and other requirements.
 const Note = sequelize.define(
   "note",
   {

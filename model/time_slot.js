@@ -21,6 +21,28 @@ const TimeSlot = sequelize.define(
     },
     config
   );
+
   
-  module.exports = TimeSlot;
+// Read all time slots at server startup
+// Because time slots are not changed frequently
+var allTimeSlots = [];
+
+async function tryInitializeTimeSlots() {
+  if (allTimeSlots.length === 0) {
+    allTimeSlots = await TimeSlot.findAll();
+  }
+}
+
+function useAllTimeSlots() {
+  return allTimeSlots;
+}
+
+// Ensure allTimeSlots is initialized
+tryInitializeTimeSlots().then(() => {
+  console.log("Time slots initialized: " + allTimeSlots.length);
+}).catch((err) => {
+  console.error(err);
+  process.exit(1);
+});
   
+module.exports = { TimeSlot, useAllTimeSlots };

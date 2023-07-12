@@ -18,6 +18,18 @@ const Order = sequelize.define(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+    user_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    is_user_order: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+    },
+    reason: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    }
   },
   config
 );

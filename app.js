@@ -32,17 +32,19 @@ const swaggerOptions = {
       BearerAuth: []
     }],
   },
-  apis: ['./routes/*.js'],
+  apis: ['./routes/*.js', "./routes/admin/*.js"],
 }
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 
 // whee party
 var indexRouter = require('./routes/index');
 var signInRouter = require('./routes/signin');
+var greetingsRouter = require('./routes/greetings');
 var packageInfoRouter = require('./routes/package_info');
 var slotAvailabilityRouter = require('./routes/slot_availability');
 var orderRouter = require('./routes/order');
-var greetingsRouter = require('./routes/greetings');
+var bulkBlockRouter = require('./routes/admin/bulk_block');
+var bulkUnblockRouter = require('./routes/admin/bulk_unblock');
 const authentication_token = require('./authentication_token');
 
 var app = express();
@@ -60,10 +62,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 // whee party APIs
 app.use('/', indexRouter);
 app.use('/signin', signInRouter);
-app.use('/order', authentication_token, orderRouter);
-app.use('/package_info', authentication_token, packageInfoRouter);
+app.use('/package_info', packageInfoRouter);
+app.use('/check-slot-availability', slotAvailabilityRouter);
+
 app.use('/greetings', authentication_token, greetingsRouter);
-app.use('/check-slot-availability', authentication_token, slotAvailabilityRouter);
+app.use('/order', authentication_token, orderRouter);
+app.use('/admin', authentication_token, bulkBlockRouter);
+app.use('/admin', authentication_token, bulkUnblockRouter);
 
 // Swagger
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
