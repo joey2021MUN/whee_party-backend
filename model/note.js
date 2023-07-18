@@ -28,6 +28,18 @@ const Note = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    order_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    additional_request: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    package_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
   },
   config
 );

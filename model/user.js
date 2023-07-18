@@ -16,7 +16,7 @@ const User = sequelize.define(
       allowNull: false,
     },
     phone_number: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     email: {
@@ -27,6 +27,10 @@ const User = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    is_admin: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+    }
   },
   config
 );

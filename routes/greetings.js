@@ -21,11 +21,19 @@ router.get('/', async function(req, res, next) {
   if (!user) {
     return res.json({ success: false, message: "User not found!" });
   }
+
+  const userInfo = {
+    id: user["id"],
+    email: user["email"],
+    full_name: user["full_name"],
+    phone_number: user["phone_number"],
+    is_admin: user["is_admin"],
+  };
+
   res.json({
       success: true, 
       message: `Hello, ${user['full_name']}`, 
-      email: email,
-      full_name: user['full_name'],
+      user: userInfo,
     });
 });
 

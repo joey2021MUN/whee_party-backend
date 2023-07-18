@@ -52,7 +52,7 @@ router.post("/", async function (req, res, next) {
   // }
 
   const token = jwt.generateAccessToken(email);
-
+  
   res.json({ success: true, token: token, message: "Sign in success!" });
 });
 
