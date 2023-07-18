@@ -1,6 +1,7 @@
 const { DataTypes } = require("sequelize");
 const { sequelize, config } = require("../database");
 
+// PackageInof is used to show package details on HomePage, and to bond with order.
 const PackageInfo = sequelize.define(
   "package_info",
   {

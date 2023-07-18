@@ -13,7 +13,7 @@ const swaggerOptions = {
     info: {
       title: 'Whee Party API',
       description: 'Whee Party API Information',
-      version: '1.0.0',
+      version: '1.0.1',
       contact: {
         name: 'Joey',
       },
@@ -45,6 +45,7 @@ var slotAvailabilityRouter = require('./routes/slot_availability');
 var orderRouter = require('./routes/order');
 var bulkBlockRouter = require('./routes/admin/bulk_block');
 var bulkUnblockRouter = require('./routes/admin/bulk_unblock');
+
 const authentication_token = require('./authentication_token');
 
 var app = express();

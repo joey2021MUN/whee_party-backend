@@ -21,10 +21,10 @@ const Order = require('../../model/order');
  *                 properties:
  *                   start_date:
  *                     type: string
- *                     example: "2023-08-01"
+ *                     example: "2023-09-01"
  *                   end_date:
  *                     type: string
- *                     example: "2023-09-01"
+ *                     example: "2023-10-05"
  *     security:
  *       - BearerAuth: []
  *     responses:
@@ -33,6 +33,8 @@ const Order = require('../../model/order');
  *       '401':
  *         description: Unauthorized
  */
+
+// Admin can unblock multiple timeslots at once, while keeping user orders.
 router.post('/bulk-unblock', async function(req, res, next) {
     const startDate = new Date(Date.parse(req.body.start_date));
     const endDate = new Date(Date.parse(req.body.end_date));

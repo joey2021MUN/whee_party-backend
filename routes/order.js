@@ -18,11 +18,11 @@ const User = require('../model/user');
  *                 properties:
  *                   date:
  *                     type: string
- *                     description: The date of the party
+ *                     description: Date of the party
  *                     example: "2023-08-01"
  *                   time_slot_id:
  *                     type: integer
- *                     description: The time slot of the party
+ *                     description: Time slot of the party
  *                     example: 1
  *     security:
  *       - BearerAuth: []

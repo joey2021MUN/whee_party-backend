@@ -19,10 +19,10 @@ const Order = require('../../model/order');
  *                 properties:
  *                   start_date:
  *                     type: string
- *                     example: "2023-08-01"
+ *                     example: "2023-09-01"
  *                   end_date:
  *                     type: string
- *                     example: "2023-09-01"
+ *                     example: "2023-10-05"
  *                   reason:
  *                     type: string
  *                     example: "Maintenance"
@@ -34,6 +34,8 @@ const Order = require('../../model/order');
  *       '401':
  *         description: Unauthorized
  */
+
+// Admin can block multiple timeslots at once, minimum 2 days.
 router.post('/bulk-block', async function(req, res, next) {
     const startDate = new Date(Date.parse(req.body.start_date));
     const endDate = new Date(Date.parse(req.body.end_date));

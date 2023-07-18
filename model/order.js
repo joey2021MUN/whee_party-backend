@@ -1,6 +1,7 @@
 const { DataTypes } = require("sequelize");
 const { sequelize, config } = require("../database");
 
+// Order is created when user books a party or admin blocks a time slot
 const Order = sequelize.define(
   "order",
   {

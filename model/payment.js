@@ -1,6 +1,7 @@
 const { DataTypes } = require("sequelize");
 const { sequelize, config } = require("../database");
 
+// Bond with order
 const Payment = sequelize.define(
   "payment",
   {

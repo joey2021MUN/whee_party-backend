@@ -1,6 +1,7 @@
 const { DataTypes } = require("sequelize");
 const { sequelize, config } = require("../database");
 
+// Currently, we don't have password feature, user can login with email only.
 const User = sequelize.define(
   "user",
   {

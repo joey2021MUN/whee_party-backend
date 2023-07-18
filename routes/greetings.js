@@ -13,6 +13,8 @@ const User = require('../model/user');
  *       '200':
  *         description: A successful response
  */
+
+// Currently, user can login with email only.
 router.get('/', async function(req, res, next) {
   const email = req.legit['email'];
   const user = await User.findOne({ where: { email: email } });

@@ -7,7 +7,7 @@ const PackageInfo = require("../model/package_info");
  * @swagger
  * /package_info:
  *   get:
- *     summary: Return infomation of three packages from database 
+ *     summary: Show detailed information of three packages
  *     responses:
  *       '200':
  *         description: A successful response
