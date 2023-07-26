@@ -13,7 +13,7 @@ router.get("/", async function (req, res, next) {
   // Orders: Time slots reserved by users
   // Boolean is_user_order: true -- booked by user, false -- blocked by Admin
   const orders = await Order.findAll({
-    where: { order_date: partyDate },
+    where: { order_date: partyDate, cancelled: false },
   });
 
   res.json(
@@ -30,7 +30,6 @@ router.get("/", async function (req, res, next) {
         start_time: slot["start_time"],
         end_time: slot["end_time"],
         available: order === undefined,
-        is_user_order: order ? order["is_user_order"] : false,
         reason: order ? order["reason"] : "",
       };
     })

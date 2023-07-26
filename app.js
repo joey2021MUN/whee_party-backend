@@ -44,6 +44,7 @@ var packageInfoRouter = require('./routes/package_info');
 var slotAvailabilityRouter = require('./routes/slot_availability');
 var orderRouter = require('./routes/order');
 var userRouter = require('./routes/user');
+var orderInfoRouter = require('./routes/order_info');
 
 var bulkBlockRouter = require('./routes/admin/bulk_block');
 var bulkUnblockRouter = require('./routes/admin/bulk_unblock');
@@ -70,7 +71,8 @@ app.use('/check-slot-availability', slotAvailabilityRouter);
 
 app.use('/greetings', authentication_token, greetingsRouter);
 app.use('/order', authentication_token, orderRouter);
-app.use('/user', authentication_token, userRouter);
+app.use('/user', userRouter);
+app.use('/order-info', authentication_token, orderInfoRouter);
 
 app.use('/admin', authentication_token, bulkBlockRouter);
 app.use('/admin', authentication_token, bulkUnblockRouter);

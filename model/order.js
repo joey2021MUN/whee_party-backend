@@ -23,7 +23,7 @@ const Order = sequelize.define(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    is_user_order: {
+    cancelled: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
     },

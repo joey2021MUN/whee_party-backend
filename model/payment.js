@@ -11,7 +11,11 @@ const Payment = sequelize.define(
       allowNull: false,
       primaryKey: true,
     },
-    amount: {
+    order_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    total: {
       type: DataTypes.DOUBLE,
       allowNull: false,
     },

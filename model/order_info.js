@@ -3,8 +3,8 @@ const { sequelize, config } = require("../database");
 
 // After booking a praty successfully, user can make a note regarding package, 
 // Themes, pizzas, drinks, tablecloth color, and other requirements.
-const Note = sequelize.define(
-  "note",
+const OrderInfo = sequelize.define(
+  "order_info",
   {
     id: {
       type: DataTypes.INTEGER,
@@ -44,4 +44,4 @@ const Note = sequelize.define(
   config
 );
 
-module.exports = Note;
+module.exports = OrderInfo;

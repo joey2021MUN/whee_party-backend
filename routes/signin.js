@@ -3,6 +3,7 @@ var router = express.Router();
 const User = require("../model/user");
 const jwt = require("../jwt");
 const sha256 = require("js-sha256");
+const { isEmailValid } = require("../utils/form_utils");
 
 /**
  * @swagger
@@ -27,14 +28,13 @@ router.post("/", async function (req, res, next) {
   const email = req.body.email;
   //const password = req.body.password;
 
-  // email validation check
-  if (!email.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)) {
-    return res.json({ success: false, message: "Invalid email!" });
-  }
-
   // email cannot be empty
   if (!email) {
     return res.json({ success: false, message: "Email is empty!" });
+  }
+
+  if (!isEmailValid(email)) {
+    return res.json({ success: false, message: "Invalid email!" });
   }
 
   const user = await User.findOne({ where: { email: email } });
